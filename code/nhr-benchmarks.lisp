@@ -21,6 +21,11 @@
           :description
           "Print this help and exit.")
          (flag
+          :short-name "l"
+          :long-name "list-benchmarks"
+          :description
+          "List all available benchmarks and exit.")
+         (flag
           :short-name "v"
           :long-name "verbose")))
 
@@ -32,10 +37,14 @@
         (memory (clon:getopt :long-name "memory"))
         (timeout (clon:getopt :long-name "timeout"))
         (benchmarks (mapcar #'find-benchmark (clon:remainder))))
+    (when (clon:getopt :long-name "list-benchmarks")
+      (dolist (benchmark *benchmarks*)
+        (format t "~&~A~%" (benchmark-name benchmark)))
+      (uiop:quit))
     (when (or (clon:getopt :long-name "help")
               (null benchmarks))
       (clon:help)
-      (clon:exit))
+      (uiop:quit))
     (loop for benchmark in benchmarks do
       (run-benchmark benchmark :memory memory :timeout timeout)))
   (uiop:quit))
