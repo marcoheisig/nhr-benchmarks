@@ -29,6 +29,7 @@
    (:module "benchmarks"
     :components
     ((:file "jacobi")
+     (:file "copy")
      (:static-file "jacobi.c")
      (:cffi-wrapper-file "c-wrappers")
      (:file "c-benchmarks")))))

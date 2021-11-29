@@ -1,9 +1,5 @@
 (in-package :nhr-benchmarks)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;; jacobi.lisp
-
 (defclass jacobi.lisp (benchmark)
   ((%rows
     :initarg :rows

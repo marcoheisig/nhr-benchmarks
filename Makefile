@@ -1,5 +1,8 @@
 LISP := ${HOME}/local/bin/sbcl
-FILES := $(wildcard code/*.lisp)
+FILES := $(wildcard code/*.lisp) \
+         $(wildcard code/*.asd) \
+         $(wildcard code/benchmarks/*.lisp) \
+         $(wildcard code/benchmarks/*.c)
 
 nhr-benchmarks: ${FILES}
 	${LISP} --eval "(require \"asdf\")" \
