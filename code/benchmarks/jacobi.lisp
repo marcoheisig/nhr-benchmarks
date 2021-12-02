@@ -6,13 +6,14 @@
     :initform 4
     :reader rows)))
 
-(defun jacobi.lisp (dst src)
-  (declare (type (simple-array f64 2) dst src))
+(defun jacobi.lisp (dst src &optional (weight 0.25d0))
+  (declare (type (simple-array f64 2) dst src)
+           (type f64 weight))
   (loop for i from 1 below (1- (array-dimension dst 0)) do
     (do-vectorized (j 1 (1- (array-dimension dst 1)))
       (:unroll 2)
       (setf (f64-aref dst i j)
-            (f64* 0.25d0
+            (f64* weight
                   (f64+
                    (f64-aref src i (1+ j))
                    (f64-aref src i (1- j))

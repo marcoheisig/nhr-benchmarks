@@ -6,7 +6,7 @@
 (defun copy.lisp (dst src)
   (declare (type (simple-array f64) dst src))
   (do-vectorized (index 0 (array-total-size src))
-    (:unroll 4)
+    (:unroll 2)
     (setf (f64-row-major-aref dst index)
           (f64-row-major-aref src index))))
 
